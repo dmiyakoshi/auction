@@ -27,10 +27,20 @@
     </p>
 
     <!--<a href="/items/{{ $item->id }}/edit">編集する</a> -->
-    <button type="button" onclick="location.href='/items/{{ $item->id }}/edit'">編集する</button>
+    <!--<button type="button" onclick="location.href='/items/{{ $item->id }}/edit'">編集する</button>
     <input type="submit" value="削除する" id="delete-form" onclick="if(!confirm('本当に削除しますか？')){return false}"> 
-    <form action="/items/{{ $item->id }}" method="POST" id="delete-form">
+    <form action="/items/{{ $item->id }}" method="post" id="delete-form">
         @csrf
         @method('DELETE')
-    </form>
+    </form> -->
+
+    <div class="button-group">
+         <!-- 商品のidを元に編集ページへ遷移する -->
+         <button onclick="location.href='/items/{{ $item->id }}/edit'">編集する</button>
+         <form action="/items/{{ $item->id }}" method="post">
+             @csrf
+             @method('DELETE')
+             <input type="submit" value="削除する" onclick="if(!confirm('削除しますか？')){return false};">
+         </form>
+        </div>
 </body>
